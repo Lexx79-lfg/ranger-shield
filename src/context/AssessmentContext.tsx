@@ -1,0 +1,7 @@
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import type { AnswerValue, AssessmentAnswers } from '../types/assessment';
+const STORAGE_KEY = 'ranger-shield-assessment-v1';
+interface AssessmentContextValue { answers:AssessmentAnswers; setAnswer:(questionId:string,value:AnswerValue)=>void; resetAssessment:()=>void; hasStarted:boolean; startAssessment:()=>void }
+const AssessmentContext = createContext<AssessmentContextValue | null>(null);
+export function AssessmentProvider({children}:{children:ReactNode}){ const [answers,setAnswers]=useState<AssessmentAnswers>(()=>{ try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch{return{}}}); const [hasStarted,setHasStarted]=useState(()=>Object.keys(answers).length>0); useEffect(()=>{localStorage.setItem(STORAGE_KEY,JSON.stringify(answers));},[answers]); const value=useMemo(()=>({answers,setAnswer:(questionId:string,value:AnswerValue)=>setAnswers(prev=>({...prev,[questionId]:value})),resetAssessment:()=>{setAnswers({});setHasStarted(false);localStorage.removeItem(STORAGE_KEY);},hasStarted,startAssessment:()=>setHasStarted(true)}),[answers,hasStarted]); return <AssessmentContext.Provider value={value}>{children}</AssessmentContext.Provider>; }
+export function useAssessment(){ const ctx=useContext(AssessmentContext); if(!ctx) throw new Error('useAssessment must be used inside AssessmentProvider'); return ctx; }

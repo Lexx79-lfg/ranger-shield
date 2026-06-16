@@ -1,0 +1,2 @@
+import type { RiskLevel } from '../types/assessment';
+export function ScoreCard({score,riskLevel}:{score:number;riskLevel:RiskLevel}){const color=riskLevel==='High'?'text-red-300':riskLevel==='Moderate'?'text-amber-300':'text-emerald-300';return <section className="rounded-lg border border-slate-800 bg-slate-900 p-5"><p className="text-sm text-slate-400">Overall safeguard implementation score</p><div className="mt-2 flex items-end gap-3"><p className="text-5xl font-bold">{score}%</p><p className={'pb-2 font-semibold '+color}>{riskLevel} risk</p></div></section>}

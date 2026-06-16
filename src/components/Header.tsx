@@ -1,0 +1,2 @@
+import { ShieldCheck } from 'lucide-react';
+export function Header(){return <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur"><div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-4 sm:px-6 lg:px-8"><div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600"><ShieldCheck className="h-6 w-6"/></div><div><p className="text-lg font-semibold tracking-wide">Ranger Shield</p><p className="text-xs uppercase text-blue-200">Technical Safeguards Verification Platform</p></div></div></header>}
