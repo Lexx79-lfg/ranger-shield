@@ -1,1 +1,1 @@
-export function ProgressBar({value}:{value:number}){return <div className="h-3 overflow-hidden rounded-full bg-slate-800" aria-label="Verification progress"><div className="h-full rounded-full bg-blue-500 transition-all" style={{width:value+'%'}}/></div>}
+export function ProgressBar({value}:{value:number}){return <div className="h-3 overflow-hidden rounded-full bg-slate-800" aria-label="Check-up progress"><div className="h-full rounded-full bg-blue-500 transition-all" style={{width:value+'%'}}/></div>}
